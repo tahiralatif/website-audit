@@ -1,0 +1,298 @@
+/* --- Layout --- */
+.page {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.backLink {
+  display: inline-block;
+  color: #6366f1;
+  font-size: 0.875rem;
+  margin-bottom: 32px;
+  text-decoration: none;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+/* --- Loading --- */
+.loading {
+  text-align: center;
+  padding: 120px 24px;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 24px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading h2 {
+  font-size: 1.5rem;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.loading p {
+  color: #64748b;
+  font-size: 1rem;
+}
+
+.loadingHint {
+  font-size: 0.875rem !important;
+  color: #94a3b8 !important;
+  margin-top: 8px;
+}
+
+/* --- Error --- */
+.errorState {
+  text-align: center;
+  padding: 120px 24px;
+}
+
+.errorState h2 {
+  font-size: 1.5rem;
+  color: #ef4444;
+  margin-bottom: 8px;
+}
+
+.errorState p {
+  color: #64748b;
+  margin-bottom: 24px;
+}
+
+.retryButton {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #6366f1;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* --- Results --- */
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* --- Overall Score --- */
+.overallSection {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+.overallSection h2 {
+  font-size: 1.25rem;
+  color: #0f172a;
+  margin-bottom: 24px;
+}
+
+.scoreRing {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scoreLabel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scoreNumber {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.scoreGrade {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.overallText {
+  font-size: 1.125rem;
+  color: #64748b;
+  margin-top: 16px;
+}
+
+.summaryBar {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.badge {
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* --- Category Scores --- */
+.categoriesSection {
+  padding: 32px;
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+.categoriesSection h2 {
+  font-size: 1.25rem;
+  color: #0f172a;
+  margin-bottom: 20px;
+}
+
+.scoreBars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.scoreBar {}
+
+.scoreBarLabel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 0.875rem;
+  color: #475569;
+}
+
+.scoreBarValue {
+  font-weight: 700;
+}
+
+.scoreBarTrack {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.scoreBarFill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 1s ease;
+}
+
+/* --- Suggestions --- */
+.suggestionsSection {
+  padding: 32px;
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+.suggestionsSection h2 {
+  font-size: 1.25rem;
+  color: #0f172a;
+  margin-bottom: 20px;
+}
+
+.noIssues {
+  color: #22c55e;
+  font-size: 1rem;
+}
+
+.issuesList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.issueCard {
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+.issueHeader {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.issueCategory {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6366f1;
+  background: #eef2ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.issueImpact {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.issueMessage {
+  font-size: 0.9375rem;
+  color: #0f172a;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.issueSuggestion {
+  font-size: 0.8125rem;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 10px 12px;
+  border-radius: 6px;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.issueEffort {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .container {
+    padding: 24px 16px;
+  }
+  .overallSection {
+    padding: 24px;
+  }
+  .scoreNumber {
+    font-size: 2rem;
+  }
+}
