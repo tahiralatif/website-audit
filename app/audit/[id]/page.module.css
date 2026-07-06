@@ -59,6 +59,13 @@
   margin-top: 8px;
 }
 
+.auditUrl {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 16px;
+  word-break: break-all;
+}
+
 /* --- Error --- */
 .errorState {
   text-align: center;

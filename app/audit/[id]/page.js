@@ -115,32 +115,43 @@ function IssueCard({ issue }) {
   );
 }
 
-function LoadingState({ currentTool }) {
+function LoadingState({ type, currentTool, url }) {
+  if (type === 'initial') {
+    return (
+      <div className={styles.loading}>
+        <div className={styles.spinner} />
+        <p className={styles.loadingHint}>Loading audit results...</p>
+      </div>
+    );
+  }
   const toolLabel = CATEGORY_LABELS[currentTool] || currentTool || '...';
   return (
     <div className={styles.loading}>
       <div className={styles.spinner} />
       <h2>Running Audit</h2>
+      {url && <p className={styles.auditUrl}>Scanning: <strong>{url}</strong></p>}
       <p>Currently analyzing: <strong>{toolLabel}</strong></p>
       <p className={styles.loadingHint}>This may take up to 2 minutes for a full audit.</p>
     </div>
   );
 }
 
-function ErrorState({ error }) {
+function ErrorState({ error, url }) {
   return (
     <div className={styles.errorState}>
-      <h2>Audit Failed</h2>
+      <h2>Audit {error === 'Audit not found' ? 'Not Found' : 'Failed'}</h2>
+      {url && <p className={styles.auditUrl}>{url}</p>}
       <p>{error || 'An unexpected error occurred.'}</p>
       <a href="/" className={styles.retryButton}>Try Again</a>
     </div>
   );
 }
 
-function ResultsDashboard({ report, issues }) {
+function ResultsDashboard({ report, issues, url }) {
   return (
     <div className={styles.results}>
       <div className={styles.overallSection}>
+        {url && <p className={styles.auditUrl}>Audited: <strong>{url}</strong></p>}
         <h2>Overall Score</h2>
         <ScoreRing score={report.overallScore} />
         <p className={styles.overallText}>{report.overallGrade.text}</p>
@@ -186,6 +197,7 @@ export default function AuditPage() {
 
   const [audit, setAudit] = useState(null);
   const [error, setError] = useState(null);
+  const [pollingStopped, setPollingStopped] = useState(false);
 
   const fetchAudit = useCallback(async () => {
     try {
@@ -193,12 +205,17 @@ export default function AuditPage() {
       const data = await res.json();
       if (!res.ok) {
         setError(data.error || 'Audit not found');
+        setPollingStopped(true);
         return null;
       }
       setAudit(data);
+      if (data.status === 'completed' || data.status === 'error') {
+        setPollingStopped(true);
+      }
       return data;
     } catch {
       setError('Failed to fetch audit results');
+      setPollingStopped(true);
       return null;
     }
   }, [id]);
@@ -207,6 +224,10 @@ export default function AuditPage() {
     let interval;
 
     async function poll() {
+      if (pollingStopped) {
+        clearInterval(interval);
+        return;
+      }
       const data = await fetchAudit();
       if (data && (data.status === 'completed' || data.status === 'error')) {
         clearInterval(interval);
@@ -217,22 +238,23 @@ export default function AuditPage() {
     interval = setInterval(poll, 2000);
 
     return () => clearInterval(interval);
-  }, [fetchAudit]);
+  }, [fetchAudit, pollingStopped]);
 
   return (
     <div className={styles.page}>
       <div className={styles.container}>
         <a href="/" className={styles.backLink}>&larr; Back to Home</a>
-        {error && <ErrorState error={error} />}
-        {!audit && <LoadingState currentTool={null} />}
+        {error && <ErrorState error={error} url={audit?.url} />}
+        {!audit && !error && <LoadingState type="initial" />}
         {(audit?.status === 'pending' || audit?.status === 'running') && (
-          <LoadingState currentTool={audit.currentTool} />
+          <LoadingState type="running" currentTool={audit.currentTool} url={audit.url} />
         )}
-        {audit?.status === 'error' && <ErrorState error={audit.error} />}
+        {audit?.status === 'error' && <ErrorState error={audit.error} url={audit.url} />}
         {audit?.status === 'completed' && (
           <ResultsDashboard
             report={audit.results.report}
             issues={audit.results.report.suggestions}
+            url={audit.url}
           />
         )}
       </div>

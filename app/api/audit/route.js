@@ -28,13 +28,11 @@ export async function POST(request) {
 
   const workerPath = process.cwd() + '/lib/audit-worker.js';
   const child = spawn(process.execPath, [workerPath, audit.id], {
-    stdio: 'inherit',
+    stdio: 'ignore',
     env: { ...process.env, NODE_NO_WARNINGS: '1' },
   });
 
-  child.on('error', (err) => {
-    console.error('Worker spawn failed:', err);
-  });
+  child.unref();
 
   return Response.json({ auditId: audit.id, url: audit.url }, { status: 201 });
 }
