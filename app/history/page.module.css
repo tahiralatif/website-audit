@@ -1,0 +1,120 @@
+.page {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.backLink {
+  display: inline-block;
+  color: #6366f1;
+  font-size: 0.875rem;
+  margin-bottom: 24px;
+  text-decoration: none;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 32px;
+}
+
+.empty {
+  text-align: center;
+  padding: 60px 24px;
+  color: #64748b;
+}
+
+.runBtn {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 12px 24px;
+  background: #6366f1;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 20px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.card:hover {
+  border-color: #6366f1;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.1);
+}
+
+.cardMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.cardUrl {
+  font-size: 0.9375rem;
+  color: #0f172a;
+  font-weight: 500;
+  word-break: break-all;
+  flex: 1;
+}
+
+.cardStatus {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 999px;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.cardStatus[data-status="completed"] {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.cardStatus[data-status="running"],
+.cardStatus[data-status="pending"] {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.cardStatus[data-status="error"] {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.cardMeta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  color: #94a3b8;
+}
+
+.cardScore {
+  font-weight: 700;
+}

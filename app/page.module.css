@@ -117,3 +117,34 @@
   color: #64748b;
   line-height: 1.5;
 }
+
+.historyLink {
+  display: inline-block;
+  margin-top: 40px;
+  font-size: 0.875rem;
+  color: #6366f1;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.historyLink:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding: 48px 16px;
+  }
+  .title {
+    font-size: 1.75rem;
+  }
+  .inputGroup {
+    flex-direction: column;
+  }
+  .button {
+    width: 100%;
+  }
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
