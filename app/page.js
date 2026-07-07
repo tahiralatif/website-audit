@@ -81,28 +81,29 @@ export default function Home() {
           {error && <p className={styles.error}>{error}</p>}
         </form>
 
-          <div className={styles.features}>
-            <div className={styles.feature}>
-              <h3>SEO</h3>
-              <p>Meta tags, headings, alt text, sitemap &amp; robots.txt</p>
-            </div>
-            <div className={styles.feature}>
-              <h3>Performance</h3>
-              <p>Lighthouse scores, load time, Core Web Vitals</p>
-            </div>
-            <div className={styles.feature}>
-              <h3>Security</h3>
-              <p>SSL certificate, security headers audit</p>
-            </div>
-            <div className={styles.feature}>
-              <h3>Accessibility</h3>
-              <p>Contrast ratio, ARIA labels, WCAG compliance</p>
-            </div>
+        <div className={styles.features}>
+          <div className={styles.feature}>
+            <h3>SEO</h3>
+            <p>Meta tags, headings, alt text, sitemap &amp; robots.txt</p>
           </div>
+          <div className={styles.feature}>
+            <h3>Performance</h3>
+            <p>Lighthouse scores, load time, Core Web Vitals</p>
+          </div>
+          <div className={styles.feature}>
+            <h3>Security</h3>
+            <p>SSL certificate, security headers audit</p>
+          </div>
+          <div className={styles.feature}>
+            <h3>Accessibility</h3>
+            <p>Contrast ratio, ARIA labels, WCAG compliance</p>
+          </div>
+        </div>
 
-          <Link href="/history" className={styles.historyLink}>View Audit History &rarr;</Link>
-        </main>
-      </div>
+        <Link href="/history" className={styles.historyLink}>
+          View Audit History &rarr;
+        </Link>
+      </main>
     </div>
   );
 }
